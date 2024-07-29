@@ -10,15 +10,15 @@ if (!empty($username)) {
 
 if (!($user instanceof ElggUser)) {
 	register_error(elgg_echo('account_removal:user:error:no_user'));
-	forward(REFERER);
+	forward(REFERRER);
 }
 
 if ($user->isAdmin()) {
 	register_error(elgg_echo('account_removal:user:error:admin'));
-	forward(REFERER);
+	forward(REFERRER);
 } elseif (!$user->canEdit()) {
 	register_error(elgg_echo('account_removal:user:error:user'));
-	forward(REFERER);
+	forward(REFERRER);
 }
 
 // set context and page owner

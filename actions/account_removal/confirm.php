@@ -8,17 +8,17 @@ $confirm_token = get_input('confirm_token');
 $user = get_user($user_guid);
 if (!($user instanceof ElggUser) || !$user->canEdit()) {
 	register_error(elgg_echo('actionunauthorized'));
-	forward(REFERER);
+	forward(REFERRER);
 }
 
 if ($user->isAdmin()) {
 	register_error(elgg_echo('account_removal:actions:remove:error:user_guid:admin'));
-	forward(REFERER);
+	forward(REFERRER);
 }
 
 if (!in_array($type, ['remove', 'disable'])) {
 	register_error(elgg_echo('account_removal:actions:remove:error:type_match'));
-	forward(REFERER);
+	forward(REFERRER);
 }
 
 // check if group owner
@@ -31,20 +31,20 @@ $group_options = [
 ];
 if ($group_admins_allowed !== 'yes' && elgg_get_entities($group_options)) {
 	register_error(elgg_echo('account_removal:actions:remove:error:group_owner'));
-	forward(REFERER);
+	forward(REFERRER);
 }
 
 // reason required
 $reason_required = elgg_get_plugin_setting('reason_required', 'account_removal');
 if (($reason_required === 'yes') && empty(strip_tags($reason))) {
 	register_error(elgg_echo('account_removal:actions:remove:error:reason'));
-	forward(REFERER);
+	forward(REFERRER);
 }
 
 // validate token
 if (!acount_removal_validate_confirm_token($confirm_token, $type, $user_guid)) {
 	register_error(elgg_echo('account_removal:actions:remove:error:token_mismatch'));
-	forward(REFERER);
+	forward(REFERRER);
 }
 
 // prepend the reason with users own request
