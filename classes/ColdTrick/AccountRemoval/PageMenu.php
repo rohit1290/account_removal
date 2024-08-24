@@ -4,9 +4,9 @@ namespace ColdTrick\AccountRemoval;
 
 class PageMenu {
 	
-	public static function settingsMenu(\Elgg\Hook $hook) {
+	public static function settingsMenu(\Elgg\Event $event) {
 		
-		$return_value = $hook->getValue();
+		$return_value = $event->getValue();
 		
 		if (!elgg_is_logged_in() || !elgg_in_context('settings')) {
 			return;

@@ -51,7 +51,7 @@ $footer .= elgg_view('input/hidden', [
 	'value' => $type,
 ]);
 $footer .= elgg_view('input/submit', [
-	'value' => elgg_echo('submit'),
+	'text' => elgg_echo('submit'),
 ]);
 
 echo elgg_format_element('div', ['class' => 'elgg-foot'], $footer);

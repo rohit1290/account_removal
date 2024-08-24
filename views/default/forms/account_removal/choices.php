@@ -26,7 +26,7 @@ if (elgg_get_plugin_setting('groupadmins_allowed', 'account_removal') !== 'yes')
 	}
 }
 
-elgg_require_js('account_removal/choices');
+elgg_import_esm('account_removal/choices');
 
 $footer = elgg_view('input/hidden', [
 	'name' => 'user_guid',
@@ -86,7 +86,7 @@ switch ($user_options) {
 }
 
 $footer .= elgg_view('input/submit', [
-	'value' => elgg_echo('submit'),
+	'text' => elgg_echo('submit'),
 ]);
 
 echo elgg_format_element('div', ['class' => 'elgg-foot'], $footer);

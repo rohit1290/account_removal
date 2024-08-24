@@ -3,9 +3,12 @@
 elgg_gatekeeper();
 
 $username = elgg_extract('username', $vars);
+if($username == null) {
+	$username = elgg_get_logged_in_user_entity()->username;
+}
 $user = false;
 if (!empty($username)) {
-	$user = get_user_by_username($username);
+	$user = elgg_get_user_by_username($username);
 }
 
 if (!($user instanceof ElggUser)) {
