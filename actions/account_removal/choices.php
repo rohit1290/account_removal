@@ -5,17 +5,17 @@ $type = get_input('type');
 
 $user = get_user($user_guid);
 if (!($user instanceof ElggUser) || !$user->canEdit()) {
-	register_error(elgg_echo('actionunauthorized'));
+	elgg_register_error_message(elgg_echo('actionunauthorized'));
 	forward(REFERRER);
 }
 
 if ($user->isAdmin()) {
-	register_error(elgg_echo('account_removal:actions:remove:error:user_guid:admin'));
+	elgg_register_error_message(elgg_echo('account_removal:actions:remove:error:user_guid:admin'));
 	forward(REFERRER);
 }
 
 if (!in_array($type, ['remove', 'disable'])) {
-	register_error(elgg_echo('account_removal:actions:remove:error:type_match'));
+	elgg_register_error_message(elgg_echo('account_removal:actions:remove:error:type_match'));
 	forward(REFERRER);
 }
 
@@ -28,13 +28,13 @@ $group_options = [
 	'count' => true,
 ];
 if ($group_admins_allowed !== 'yes' && elgg_get_entities($group_options)) {
-	register_error(elgg_echo('account_removal:actions:remove:error:group_owner'));
+	elgg_register_error_message(elgg_echo('account_removal:actions:remove:error:group_owner'));
 	forward(REFERRER);
 }
 
 // user requests removal, generate token and sent confirm mail
 account_removal_send_notification($type, $user_guid);
 
-system_message(elgg_echo('account_removal:actions:remove:success:request'));
+elgg_register_success_message(elgg_echo('account_removal:actions:remove:success:request'));
 
 forward("settings/user/{$user->username}");

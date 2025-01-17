@@ -12,15 +12,15 @@ if (!empty($username)) {
 }
 
 if (!($user instanceof ElggUser)) {
-	register_error(elgg_echo('account_removal:user:error:no_user'));
+	elgg_register_error_message(elgg_echo('account_removal:user:error:no_user'));
 	forward(REFERRER);
 }
 
 if ($user->isAdmin()) {
-	register_error(elgg_echo('account_removal:user:error:admin'));
+	elgg_register_error_message(elgg_echo('account_removal:user:error:admin'));
 	forward(REFERRER);
 } elseif (!$user->canEdit()) {
-	register_error(elgg_echo('account_removal:user:error:user'));
+	elgg_register_error_message(elgg_echo('account_removal:user:error:user'));
 	forward(REFERRER);
 }
 

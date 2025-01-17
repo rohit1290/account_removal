@@ -7,17 +7,17 @@ $confirm_token = get_input('confirm_token');
 
 $user = get_user($user_guid);
 if (!($user instanceof ElggUser) || !$user->canEdit()) {
-	register_error(elgg_echo('actionunauthorized'));
+	elgg_register_error_message(elgg_echo('actionunauthorized'));
 	forward(REFERRER);
 }
 
 if ($user->isAdmin()) {
-	register_error(elgg_echo('account_removal:actions:remove:error:user_guid:admin'));
+	elgg_register_error_message(elgg_echo('account_removal:actions:remove:error:user_guid:admin'));
 	forward(REFERRER);
 }
 
 if (!in_array($type, ['remove', 'disable'])) {
-	register_error(elgg_echo('account_removal:actions:remove:error:type_match'));
+	elgg_register_error_message(elgg_echo('account_removal:actions:remove:error:type_match'));
 	forward(REFERRER);
 }
 
@@ -30,20 +30,20 @@ $group_options = [
 	'count' => true,
 ];
 if ($group_admins_allowed !== 'yes' && elgg_get_entities($group_options)) {
-	register_error(elgg_echo('account_removal:actions:remove:error:group_owner'));
+	elgg_register_error_message(elgg_echo('account_removal:actions:remove:error:group_owner'));
 	forward(REFERRER);
 }
 
 // reason required
 $reason_required = elgg_get_plugin_setting('reason_required', 'account_removal');
 if (($reason_required === 'yes') && empty(strip_tags($reason))) {
-	register_error(elgg_echo('account_removal:actions:remove:error:reason'));
+	elgg_register_error_message(elgg_echo('account_removal:actions:remove:error:reason'));
 	forward(REFERRER);
 }
 
 // validate token
 if (!acount_removal_validate_confirm_token($confirm_token, $type, $user_guid)) {
-	register_error(elgg_echo('account_removal:actions:remove:error:token_mismatch'));
+	elgg_register_error_message(elgg_echo('account_removal:actions:remove:error:token_mismatch'));
 	forward(REFERRER);
 }
 
@@ -61,6 +61,6 @@ if ($type == 'disable') {
 	$user->delete(false);
 }
 
-system_message(elgg_echo("account_removal:actions:remove:success:{$type}"));
+elgg_register_success_message(elgg_echo("account_removal:actions:remove:success:{$type}"));
 
 $forward_url = '';
