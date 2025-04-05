@@ -32,10 +32,14 @@ echo elgg_view('output/longtext', [
 	'value' => elgg_echo("account_removal:forms:user:user_options:description:{$type}"),
 ]);
 
-echo elgg_view_input('longtext', [
-	'name' => 'reason',
-	'label' => elgg_echo('account_removal:forms:user:reason'),
-	'required' => ($reason_required === 'yes'),
+echo elgg_view_field([
+	'#type' => 'longtext',
+	'#label' => elgg_echo('account_removal:forms:user:reason'),
+	'#help' => elgg_echo('account_removal:forms:user:reason:help'),
+	'#required' => ($reason_required === 'yes'),
+	'#value' => elgg_echo('account_removal:disable:default'),
+	'#class' => 'account-removal-reason',
+	'#placeholder' => elgg_echo('account_removal:forms:user:reason:placeholder'),
 ]);
 
 $footer = elgg_view('input/hidden', [
