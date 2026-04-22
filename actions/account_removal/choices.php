@@ -4,7 +4,7 @@ $user_guid = (int) get_input('user_guid');
 $type = get_input('type');
 
 $user = get_user($user_guid);
-if (!($user instanceof ElggUser) || !$user->canEdit()) {
+if (!($user instanceof \ElggUser) || !$user->canEdit()) {
 	elgg_register_error_message(elgg_echo('actionunauthorized'));
 	elgg_redirect_response(REFERRER);
 }

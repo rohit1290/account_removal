@@ -34,27 +34,31 @@ echo elgg_view('output/longtext', [
 
 echo elgg_view_field([
 	'#type' => 'longtext',
-	'#label' => elgg_echo('account_removal:forms:user:reason'),
+	'#label' => elgg_echo('account_removal:forms:user:reason:'.$type),
 	'#help' => elgg_echo('account_removal:forms:user:reason:help'),
-	'#required' => ($reason_required === 'yes'),
-	'#value' => elgg_echo('account_removal:disable:default'),
-	'#class' => 'account-removal-reason',
-	'#placeholder' => elgg_echo('account_removal:forms:user:reason:placeholder'),
+	'required' => ($reason_required === 'yes'),
+	'value' => elgg_echo('account_removal:disable:default'),
+	'class' => 'account-removal-reason',
+	'placeholder' => elgg_echo('account_removal:forms:user:reason:placeholder'),
 ]);
 
-$footer = elgg_view('input/hidden', [
+$footer = elgg_view_field([
+	'#type' => 'hidden',
 	'name' => 'user_guid',
 	'value' => $user->getGUID(),
 ]);
-$footer .= elgg_view('input/hidden', [
+$footer .= elgg_view_field([
+	'#type' => 'hidden',
 	'name' => 'confirm_token',
 	'value' => $token,
 ]);
-$footer .= elgg_view('input/hidden', [
+$footer .= elgg_view_field([
+	'#type' => 'hidden',
 	'name' => 'type',
 	'value' => $type,
 ]);
-$footer .= elgg_view('input/submit', [
+$footer .= elgg_view_field([
+	'#type' => 'submit',
 	'text' => elgg_echo('submit'),
 ]);
 

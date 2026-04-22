@@ -6,7 +6,7 @@ $reason = get_input('reason');
 $confirm_token = get_input('confirm_token');
 
 $user = get_user($user_guid);
-if (!($user instanceof ElggUser) || !$user->canEdit()) {
+if (!($user instanceof \ElggUser) || !$user->canEdit()) {
 	elgg_register_error_message(elgg_echo('actionunauthorized'));
 	elgg_redirect_response(REFERRER);
 }

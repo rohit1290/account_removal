@@ -8,11 +8,7 @@
 		"source": "https://github.com/ColdTrick/account_removal",
 		"issues": "https://github.com/ColdTrick/account_removal/issues"
 	},
-	"require": {
-		"composer/installers": "^1.0.8"
-	},
-	"require-dev": {
-		"coldtrick/sniffs": "dev-master",
-		"coldtrick/releases": "dev-master"
+	"conflict": {
+		"elgg/elgg": "<6.0"
 	}
 }

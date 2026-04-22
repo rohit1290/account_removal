@@ -28,7 +28,8 @@ if (elgg_get_plugin_setting('groupadmins_allowed', 'account_removal') !== 'yes')
 
 elgg_import_esm('account_removal/choices');
 
-$footer = elgg_view('input/hidden', [
+$footer = elgg_view_field([
+	'#type' => 'hidden',
 	'name' => 'user_guid',
 	'value' => $user->getGUID(),
 ]);
@@ -37,7 +38,8 @@ $footer = elgg_view('input/hidden', [
 $user_options = elgg_get_plugin_setting('user_options', 'account_removal');
 switch ($user_options) {
 	case 'remove':
-		$footer .= elgg_view('input/hidden', [
+		$footer .= elgg_view_field([
+			'#type' => 'hidden',
 			'name' => 'type',
 			'value' => 'remove',
 		]);
@@ -61,7 +63,7 @@ switch ($user_options) {
 			'#type' => 'select',
 			'name' => 'type',
 			'#label' => elgg_echo('account_removal:forms:user:user_options:description:disable_and_remove:choice'),
-			'options' => [
+			'options_values' => [
 					'disable' => elgg_echo('account_removal:forms:user:user_options:disable'),
 					'remove' => elgg_echo('account_removal:forms:user:user_options:remove'),
 				],
@@ -70,7 +72,8 @@ switch ($user_options) {
 		break;
 	case 'disable':
 	default:
-		$footer .= elgg_view('input/hidden', [
+		$footer .= elgg_view_field([
+			'#type' => 'hidden',
 			'name' => 'type',
 			'value' => 'disable',
 		]);
@@ -85,7 +88,8 @@ switch ($user_options) {
 		break;
 }
 
-$footer .= elgg_view('input/submit', [
+$footer .= elgg_view_field([
+	'#type' => 'submit',
 	'text' => elgg_echo('submit'),
 ]);
 

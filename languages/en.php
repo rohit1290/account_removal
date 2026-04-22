@@ -33,7 +33,8 @@ return [
 	
 	'account_removal:forms:user:user_options:disable' => "Disable this account",
 	'account_removal:forms:user:user_options:remove' => "Remove this account",
-	'account_removal:forms:user:reason' => "Please enter a reason for this Account Removal",
+	'account_removal:forms:user:reason:remove' => "Please enter a reason for this Account Removal",
+	'account_removal:forms:user:reason:disable' => "Please enter a reason for this Account Disable",
 	
 	'account_removal:forms:user:js:confirm:disable' => "Are you sure you wish to disable this account?",
 	'account_removal:forms:user:js:confirm:remove' => "Are you sure you wish to remove this account?",
@@ -42,8 +43,7 @@ return [
 
 	// confirmation message
 	'account_removal:message:disable:subject' => "You have requested to disable your account on %s",
-	'account_removal:message:disable:body' => "Dear %s,
-You have requested that your account be disabled.
+	'account_removal:message:disable:body' => "You have requested that your account be disabled.
 All the content you have made on the site will remain available to the other users. However you can no longer login also your account will not appear in any user listing and your profile will be inaccessable.
 
 To confirm that you realy want to disable your account please click the following link:
@@ -52,8 +52,7 @@ To confirm that you realy want to disable your account please click the followin
 We hope you've enjoyed our community and thank you for your contributions.",
 	
 	'account_removal:message:remove:subject' => "You have requested to remove your account on %s",
-	'account_removal:message:remove:body' => "Dear %s,
-You have requested that your account be removed.
+	'account_removal:message:remove:body' => "You have requested that your account be removed.
 All the content you have made on the site will also be removed
 
 To confirm that you realy want to remove your account please click the following link:
@@ -63,16 +62,14 @@ We hope you've enjoyed our community and thank you for your contributions.",
 	
 	// thank you message
 	'account_removal:message:thank_you:remove:subject' => "Thank you for using %s",
-	'account_removal:message:thank_you:remove:body' => "Dear %s,
-We would like to thank you for using %s. We hope you enjoyed our community.
+	'account_removal:message:thank_you:remove:body' => "We would like to thank you for using %s. We hope you enjoyed our community.
 
 If at any time you would like to return, you can always create a new account.
 
 Again thank you for your contributions.",
 	
 	'account_removal:message:thank_you:disable:subject' => "Thank you for using %s",
-	'account_removal:message:thank_you:disable:body' => "Dear %s,
-We would like to thank you for using %s. We hope you enjoyed our community.
+	'account_removal:message:thank_you:disable:body' => "We would like to thank you for using %s. We hope you enjoyed our community.
 
 If at any time you would like to return, you can always create a new account or ask the site administrator to reactivate your account.
 

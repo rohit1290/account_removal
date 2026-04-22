@@ -1,13 +1,12 @@
 <?php
-use ColdTrick\AccountRemoval\Bootstrap;
 
 require_once __DIR__ . '/lib/functions.php';
 
 return [
 	'plugin' => [
-		'version' => '6.0',
+		'name' => 'Account Removal',
+		'version' => '7.0',
 	],
-	'bootstrap' => Bootstrap::class,
 	'actions' => [
 		'account_removal/choices' => [],
 		'account_removal/confirm' => [],
@@ -24,6 +23,25 @@ return [
 		'collection:account_removal' => [
 			'path' => '/account_removal',
 			'resource' => 'account_removal/choices',
+		],
+	],
+	'events' => [
+		'register' => [
+			'menu:page' => [
+				'ColdTrick\AccountRemoval\PageMenu::settingsMenu' => [],
+			],
+		],
+	],
+	'notifications' => [
+		'user' => [
+			'user' => [
+				'account_removal_notify' => [
+					ColdTrick\AccountRemoval\Notifications\Notify::class => [],
+				],
+				'account_removal_thanks' => [
+					ColdTrick\AccountRemoval\Notifications\Thanks::class => [],
+				],
+			],
 		],
 	],
 ];

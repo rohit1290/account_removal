@@ -78,7 +78,6 @@ function acount_removal_validate_confirm_token($token, $type, $user_guid) {
  */
 function account_removal_send_notification($type, $user_guid) {
 	
-	$site = elgg_get_site_entity();
 	
 	$user = get_user($user_guid);
 	if (empty($user)) {
@@ -94,18 +93,14 @@ function account_removal_send_notification($type, $user_guid) {
 		return false;
 	}
 	
-	$url = elgg_normalize_url("account_removal/{$user->username}/confirm/{$type}/?confirm_token={$token}");
+	$params = [
+		'username' => $user->username,
+		'type' => $type,
+		'token' => $token,
+		'site_name' => elgg_get_site_entity()->name,
+	];
 	
-	$subject = elgg_echo("account_removal:message:{$type}:subject", [
-		$site->name,
-	]);
-	$message = elgg_echo("account_removal:message:{$type}:body", [
-		$user->name,
-		$url,
-	]);
-	
-	notify_user($user_guid, $site->getGUID(), $subject, $message, [], 'email');
-	
+	$user->notify('account_removal_notify', $user, $params, $user);
 	return true;
 }
 
@@ -128,17 +123,13 @@ function account_removal_send_thank_notification($type, $user_guid) {
 		return false;
 	}
 	
-	$site = elgg_get_site_entity();
-	
-	$subject = elgg_echo("account_removal:message:thank_you:{$type}:subject", [
-		$site->name,
-	]);
-	$message = elgg_echo("account_removal:message:thank_you:{$type}:body", [
-		$user->name,
-		$site->name,
-	]);
-	
-	notify_user($user_guid, $site->getGUID(), $subject, $message, [], 'email');
-	
+	// $site = elgg_get_site_entity();
+
+	$params = [
+		'type' => $type,
+		'site_name' => elgg_get_site_entity()->name,
+	];
+
+	$user->notify('account_removal_thanks', $user, $params, $user);
 	return true;
 }
