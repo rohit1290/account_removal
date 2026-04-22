@@ -133,3 +133,18 @@ function account_removal_send_thank_notification($type, $user_guid) {
 	$user->notify('account_removal_thanks', $user, $params, $user);
 	return true;
 }
+
+function account_removal_notify_class() {
+	if((int)substr(elgg_get_release(),0,1) <= 6) {
+		return ColdTrick\AccountRemoval\Notifications\Notify::class;
+	} else {
+		return [ColdTrick\AccountRemoval\Notifications\Notify::class => []];
+	}
+}
+function account_removal_thanks_class() {
+	if((int)substr(elgg_get_release(),0,1) <= 6) {
+		return ColdTrick\AccountRemoval\Notifications\Thanks::class;
+	} else {
+		return [ColdTrick\AccountRemoval\Notifications\Thanks::class => []];
+	}
+}

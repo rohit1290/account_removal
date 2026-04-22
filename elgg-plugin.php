@@ -35,12 +35,8 @@ return [
 	'notifications' => [
 		'user' => [
 			'user' => [
-				'account_removal_notify' => [
-					ColdTrick\AccountRemoval\Notifications\Notify::class => [],
-				],
-				'account_removal_thanks' => [
-					ColdTrick\AccountRemoval\Notifications\Thanks::class => [],
-				],
+				'account_removal_notify' => account_removal_notify_class(),
+				'account_removal_thanks' => account_removal_thanks_class(),
 			],
 		],
 	],
